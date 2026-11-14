@@ -97,6 +97,13 @@
 .media video{width:100%;display:block;border-radius:5px;background:#000}
 .media figcaption{font-size:.86rem;margin:.7rem 0 0}
 .media .credit{font-size:.74rem;margin:1rem 0 0;opacity:.72}
+.flow{background:#fff;border:1px solid var(--rule);border-radius:8px;padding:1.4rem 1.2rem;overflow-x:auto}
+.flow img{display:block;width:100%;max-width:34rem;height:auto;margin:0 auto}
+.flow .bx{fill:var(--accent-bg);stroke:var(--rule)}
+.flow .lbl{fill:var(--ink);font-family:var(--sans);font-size:13px;font-weight:600}
+.flow .sub{fill:var(--soft);font-family:var(--sans);font-size:11px}
+.flow .ar{stroke:var(--faint);fill:none;stroke-width:1.5}
+.flow .acc{fill:var(--accent);font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.08em}
 </style>
 </head>
 <body>
@@ -168,6 +175,14 @@
       </figure>
     </div>
     <p class="credit">Simulated trajectories with recovered positions overlaid, from the feature-selection study published in <em>Chemical &amp; Biomedical Imaging</em> (2025).</p>
+  </section>
+
+  <section id="workflow">
+    <h2>The workflow</h2>
+    <div class="flow">
+      <img src="workflow.png" alt="Workflow: 3D trajectories in x, y, z and t pass through feature engineering and hyperparameter optimization to produce trajectories classified as directed, normal, anomalous or confined diffusion">
+    </div>
+    <p class="credit">Six descriptors survive selection from a much longer candidate list: kurtosis, fractal dimension, average MSD ratio, Gaussianity, jump length and trappedness. Roughly 80% accuracy across the four classes on 50,000 simulated 3D trajectories. Figure from the study published in <em>Chemical &amp; Biomedical Imaging</em> (2025).</p>
   </section>
 
   <section>

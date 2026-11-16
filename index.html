@@ -89,21 +89,6 @@
   footer p{font-size:.95rem}
   footer a{color:var(--accent);text-decoration:none}
   footer a:hover{text-decoration:underline}
-.media{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-.media figure{margin:0;background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:.9rem}
-.pairs{grid-template-columns:1fr}
-@media(min-width:700px){.pairs{grid-template-columns:1fr 1fr}}
-.media img{width:100%;display:block;border-radius:5px}
-.media video{width:100%;display:block;border-radius:5px;background:#000}
-.media figcaption{font-size:.86rem;margin:.7rem 0 0}
-.media .credit{font-size:.74rem;margin:1rem 0 0;opacity:.72}
-.flow{background:#fff;border:1px solid var(--rule);border-radius:8px;padding:1.4rem 1.2rem;overflow-x:auto}
-.flow img{display:block;width:100%;max-width:34rem;height:auto;margin:0 auto}
-.flow .bx{fill:var(--accent-bg);stroke:var(--rule)}
-.flow .lbl{fill:var(--ink);font-family:var(--sans);font-size:13px;font-weight:600}
-.flow .sub{fill:var(--soft);font-family:var(--sans);font-size:11px}
-.flow .ar{stroke:var(--faint);fill:none;stroke-width:1.5}
-.flow .acc{fill:var(--accent);font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.08em}
 </style>
 </head>
 <body>
@@ -115,7 +100,7 @@
       <h1>Jagriti Chatterjee</h1>
       <p class="pitch">I turn microscope data into models that hold up &mdash; and find the measurement errors that quietly break the ones that don't.</p>
       <div class="cta">
-        <a class="btn primary" href="mailto:jagritic@uci.edu">Get in touch</a>
+        <a class="btn primary" href="mailto:jagritichatterjee1208@gmail.com">Get in touch</a>
         <a class="btn" href="https://github.com/jagriti12">GitHub</a>
         <a class="btn" href="https://www.linkedin.com/in/jagriti-uiuc/">LinkedIn</a>
         <a class="btn" href="https://scholar.google.com/citations?user=4jR9mPMAAAAJ&amp;hl=en">Scholar</a>
@@ -128,61 +113,7 @@
     <h2>What I do</h2>
     <p class="intro">I work both sides of the instrument. I run TIRF, widefield and MINFLUX experiments, and I write the models that interpret them. That combination is why I tend to find the problems sitting between the hardware and the analysis &mdash; the ones where the pipeline runs fine and the answer is still wrong.</p>
     <p class="intro">PhD in Chemistry from the <strong>University of Illinois Urbana-Champaign</strong>, now a postdoc at <strong>UC Irvine</strong> working on ion channel dynamics in human stem-cell-derived cells. Six years of building deep learning and statistical methods for imaging data, with the code packaged, tested and handed to other people.</p>
-    <p class="intro"><strong>Looking for</strong> computational scientist, image analysis and machine learning roles in biotech, pharma and scientific instruments.</p>
-  </section>
-
-  <section id="seeing">
-    <h2>What the data actually looks like</h2>
-    <div class="media pairs">
-      <figure>
-        <video autoplay loop muted playsinline preload="metadata" poster="movie_poster.png">
-          <source src="ad_movie.mp4" type="video/mp4">
-        </video>
-        <figcaption><strong>Anomalous diffusion, as the camera sees it.</strong> Ten emitters imaged through a double-helix point spread function: the angle between each pair of lobes encodes depth. Red marks the position the tracking recovers, frame by frame. Scale bar 2 &micro;m.</figcaption>
-      </figure>
-      <figure>
-        <img src="ad_traj.png" alt="3D trajectories recovered from the anomalous diffusion movie, coloured by time">
-        <figcaption><strong>What comes out of it.</strong> The recovered 3D tracks, coloured by time. Short, tethered excursions rather than free exploration.</figcaption>
-      </figure>
-      <figure>
-        <video autoplay loop muted playsinline preload="metadata" poster="movie_poster.png">
-          <source src="cd_movie.mp4" type="video/mp4">
-        </video>
-        <figcaption><strong>Confined diffusion, same imaging conditions.</strong> Indistinguishable from the frames above by eye, which is the whole problem.</figcaption>
-      </figure>
-      <figure>
-        <img src="cd_traj.png" alt="3D trajectories recovered from the confined diffusion movie, coloured by time">
-        <figcaption><strong>And its tracks.</strong> Particles stay inside small domains. Telling these two classes apart from short, noisy tracks is what the feature selection work is for.</figcaption>
-      </figure>
-    </div>
-    <p class="credit">Simulated data from the feature-selection study published in <em>Chemical &amp; Biomedical Imaging</em> (2025).</p>
-  </section>
-
-  <section id="recovery">
-    <h2>Ground truth versus recovery</h2>
-    <div class="media">
-      <figure>
-        <video autoplay loop muted playsinline preload="metadata" poster="traj_poster.png">
-          <source src="traj_dm.mp4" type="video/mp4">
-        </video>
-        <figcaption><strong>Directed motion.</strong> Blue is the simulated ground truth, red is what the tracking recovers. Long, persistent excursions: the classifier has an easy time here.</figcaption>
-      </figure>
-      <figure>
-        <video autoplay loop muted playsinline preload="metadata" poster="traj_poster.png">
-          <source src="traj_nd.mp4" type="video/mp4">
-        </video>
-        <figcaption><strong>Normal diffusion.</strong> The same overlay for Brownian motion. Compact, isotropic clouds, and the mode is much harder to call from a short track.</figcaption>
-      </figure>
-    </div>
-    <p class="credit">Simulated trajectories with recovered positions overlaid, from the feature-selection study published in <em>Chemical &amp; Biomedical Imaging</em> (2025).</p>
-  </section>
-
-  <section id="workflow">
-    <h2>The workflow</h2>
-    <div class="flow">
-      <img src="workflow.png" alt="Workflow: 3D trajectories in x, y, z and t pass through feature engineering and hyperparameter optimization to produce trajectories classified as directed, normal, anomalous or confined diffusion">
-    </div>
-    <p class="credit">Six descriptors survive selection from a much longer candidate list: kurtosis, fractal dimension, average MSD ratio, Gaussianity, jump length and trappedness. Roughly 80% accuracy across the four classes on 50,000 simulated 3D trajectories. Figure from the study published in <em>Chemical &amp; Biomedical Imaging</em> (2025).</p>
+    <p class="intro"><strong>Looking for</strong> algorithm developer, computational scientist, image analysis and machine learning roles in scientific instruments, metrology, biotech and pharma.</p>
   </section>
 
   <section>
@@ -206,7 +137,7 @@
       <div class="card">
         <p class="stat">2</p>
         <h3>Tools shipped, not scripts</h3>
-        <p>A real-time nanoparticle classifier packaged as a desktop application with documentation and user training, and an installable, tested Python package released alongside its paper.</p>
+        <p>A real-time nanoparticle classifier packaged as a desktop application with documentation and user training, and an installable Python package with a test suite, continuous integration and a Docker image, released alongside its paper.</p>
       </div>
     </div>
   </section>
@@ -219,7 +150,7 @@
     </div>
     <div class="tagrow">
       <h4>Engineering</h4>
-      <div class="tags"><span class="tag">Python</span><span class="tag">MATLAB</span><span class="tag">Docker</span><span class="tag">Git</span><span class="tag">MLflow</span><span class="tag">AWS</span><span class="tag">GCP</span><span class="tag">Linux</span></div>
+      <div class="tags"><span class="tag">Python</span><span class="tag">MATLAB</span><span class="tag">Docker</span><span class="tag">Git</span><span class="tag">GitHub Actions CI</span><span class="tag">pytest</span><span class="tag">SQL</span><span class="tag">HPC / GPU clusters</span><span class="tag">Linux</span></div>
     </div>
     <div class="tagrow">
       <h4>Imaging</h4>
@@ -229,10 +160,15 @@
 
   <section>
     <h2>Software</h2>
+    <div class="repo">
+      <p class="repo-name">AUD&#274;NS</p>
+      <p>Desktop application for real-time gold nanoparticle shape classification and size estimation from dark-field scattering spectra. I built the interface over the trained CNN so experimentalists run inference at the microscope without writing code.</p>
+      <span>Python &middot; TensorFlow &middot; Tkinter &middot; code release on publication</span>
+    </div>
     <a class="repo" href="https://github.com/jagriti12/spt-classify">
       <p class="repo-name">spt-classify</p>
-      <p>Motion-type classification for 3D single-particle tracking. Six interpretable descriptors, a bagged ensemble, a trajectory simulation suite, and tests that check physics rather than array shapes.</p>
-      <span>Python &middot; scikit-learn &middot; MIT</span>
+      <p>Motion-type classification for 3D single-particle tracking. Six interpretable descriptors, a bagged ensemble, a trajectory simulation suite, and tests that check physics rather than array shapes. Continuous integration across three Python versions, containerised with Docker.</p>
+      <span>Python &middot; scikit-learn &middot; Docker &middot; MIT</span>
     </a>
     <a class="repo" href="https://github.com/jagriti12/3D-SPT-Classification">
       <p class="repo-name">3D-SPT-Classification</p>
@@ -264,7 +200,7 @@
 
   <footer>
     <p><strong>Open to industry roles</strong> in computational imaging, machine learning and scientific software. Based in Irvine, California; open to relocation and travel.</p>
-    <p><a href="mailto:jagritic@uci.edu">jagritic@uci.edu</a> &middot; <a href="https://github.com/jagriti12">github.com/jagriti12</a></p>
+    <p><a href="mailto:jagritichatterjee1208@gmail.com">jagritichatterjee1208@gmail.com</a> &middot; <a href="https://www.linkedin.com/in/jagriti-uiuc/">LinkedIn</a> &middot; <a href="https://github.com/jagriti12">github.com/jagriti12</a></p>
   </footer>
 
 </div>
